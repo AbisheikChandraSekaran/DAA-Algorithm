@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+
+int h1(string s, int arrSize) {
+  ll int hash = 0;
+  for (int i = 0; i < s.size(); i++) {
+    hash = (hash * 26 + (s[i] - 'a')) % arrSize;
+  }
+  return hash;
+}
+int h2(string s, int arrSize) {
+  ll int hash = 0;
+  for (int i = 0; i < s.size(); i++) {
+    hash = (hash + pow(21, i) * s[i]);
+    hash = hash % arrSize;
+  }
+  return hash;
+}
+
+bool lookup(string s, bool *bitarr, int arrSize) {
+  int a = h1(s, arrSize);
+  int b = h2(s, arrSize);
+  if (bitarr[a] && bitarr[b]) {
+    return true;
+  }
+  else{
+  return false;
+}
+}
+void insert(string s, bool *bitarr, int arrSize) {
+  if (lookup(s, bitarr, arrSize)){
+    cout<<s<<" is propabally present"<<endl;}
+  else{
+    int a = h1(s, arrSize); 
+    int b = h2(s, arrSize);
+    bitarr[a] = true; 
+    bitarr[b] = true; 
+    cout << s << " inserted" << endl;
+  }
+    }
+
+    int main() {
+    bool bitarray[100] = { false }; 
+    int arrSize = 4; 
+    string sarray[3] = {"amarnath", "Bharath","Arun"};
+    for(int i=0;i<3;i++){
+      insert(sarray[i], bitarray, arrSize);
+    }
+    return 0;
+    }
