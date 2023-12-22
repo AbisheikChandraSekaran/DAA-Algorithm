@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+int main() {
+  int n, m;
+  cout << "Enter the no.of rows";
+  cin >> n;
+  cout << "Enter the no.of columns";
+  cin >> m;
+  int arr[n][m];
+  cout << "Enter the elements of n and m";
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      cout << "Enter the element of [" << i << "]"
+           << "and"
+           << "[" << j << "]";
+      cin >> arr[i][j];
+    }
+  }
+  int size = 0;
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      if (arr[i][j] != 0) {
+        size++;
+      }
+    }
+  }
+  int CompatabilityMatrix[3][size];
+  int k = 0;
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      if (arr[i][j] != 0) {
+        CompatabilityMatrix[0][k] = i;
+        CompatabilityMatrix[1][k] = j;
+        CompatabilityMatrix[2][k] = arr[i][j];
+        k++;
+      }
+    }
+  }
+  for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < size; j++) {
+      cout << CompatabilityMatrix[i][j] << " ";
+    }
+    cout << "\n";
+  }
+
+  return 0;
+}
